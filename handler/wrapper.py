@@ -72,6 +72,10 @@ async def coinmarketcap_price(symbol):
     try:
         response = session.get(coinmarketcap_url, params=parameters)
         data = json.loads(response.text)
+        # error
+        if data["status"]["error_code"] != 0:
+            print(data["status"]["error_message"])
+            return None
         # Gets FAIL if symbol not found
         if len(list(data["data"].keys())) == 0:
             # print(f"No data found for CoinMarketCap")
