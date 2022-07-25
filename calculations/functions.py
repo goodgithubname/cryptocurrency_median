@@ -13,27 +13,6 @@ def get_gecko_id(symbol, gecko_list):
     return None
 
 
-def get_gecko_id_multiple(symbol, gecko_list):
-    id_list = []
-    for ids in gecko_list:
-        if symbol.lower() == ids["symbol"]:
-            id_list.append(ids)
-    print(id_list)
-    print(len(id_list))
-    if len(id_list) > 1:
-        print(f"\nMore than 1 currencies for the symbol {symbol} in CoinGecko")
-        for dupe in range(1, len(id_list) + 1):
-            print(f"[{dupe}]: {id_list[dupe-1]['name']}")
-        choice = int(input("Which one would  you like to input?:\n"))
-        print(id_list[choice - 1]["id"])
-        return id_list[choice - 1]["id"]
-    elif len(id_list) == 1:
-        print(id_list[0]["id"])
-        return id_list[0]["id"]
-    else:
-        return None
-
-
 def remove_null(price_list):
     new_price = []
     # Remove price with no data
@@ -80,12 +59,16 @@ async def get_exchange_prices(symbol_list):
         # await asyncio functions
         binance_value = await binance
         all_price.append(["Binance", binance_value])
+
         gecko_value = await binance
         all_price.append(["GeckoCoin", gecko_value])
+
         coinmarket_value = await coinmarket
         all_price.append(["CoinMarketCap", coinmarket_value])
+
         kraken_value = await coinmarket
         all_price.append(["Kraken", kraken_value])
+
         okx_value = await coinmarket
         all_price.append(["OKX", okx_value])
 
