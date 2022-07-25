@@ -9,8 +9,9 @@ from mypackage.handler import *
 from testcase import *
 
 
-for i in range(0, len(test_cases) - 1):
-    print(f"TEST CASE: {i+1}")
-    print("===============================")
-    print(asyncio.run(get_exchange_prices(test_cases[i])))
-    print(f"\n===============================\n")
+if __name__ == "__main__":
+    for i in range(0, len(test_cases) - 1):
+        print(f"TEST CASE: {i+1}")
+        print("===============================")
+        print(asyncio.run(get_exchange_prices(test_cases[i])))
+        print(f"\n===============================\n")

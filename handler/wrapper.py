@@ -74,8 +74,7 @@ async def coinmarketcap_price(symbol):
         data = json.loads(response.text)
         # error
         if data["status"]["error_code"] != 0:
-            print(data["status"]["error_message"])
-            return None
+            raise Exception(f"CoinMarketCap: {data['status']['error_message']}")
         # Gets FAIL if symbol not found
         if len(list(data["data"].keys())) == 0:
             # print(f"No data found for CoinMarketCap")
