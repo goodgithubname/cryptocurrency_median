@@ -41,3 +41,4 @@ Making the package more complete, better structured and able to pip install the 
 ##UPDATE (25/07/2022)
 - Implemented asyncio into code to make API calls asynchronous
 - Used black formatter to format Python code
+- Pull test case data from JSON file instead
