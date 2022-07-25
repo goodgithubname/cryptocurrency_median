@@ -60,7 +60,7 @@ async def get_exchange_prices(symbol_list):
     # Iterate all smybols
     for symbol in symbol_list:
         print(f"Calculating for symbol {symbol}")
-        all_price = []
+        median_prices = []
         # Get price from all APIs and put them in a list(except ones without data)
         print("Fetching from Binance")
         binance = asyncio.create_task(binance_price(symbol))
@@ -98,8 +98,8 @@ async def get_exchange_prices(symbol_list):
         all_price = remove_outlier(all_price)
 
         # Pair symbol with average price
-        input_list.append(median(all_price))
-        print(input_list)
-        # time.sleep(1)
+        median_prices.append(median(all_price))
+        print(median_prices)
+        time.sleep(1)
 
-    return input_list
+    return median_prices
