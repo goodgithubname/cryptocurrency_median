@@ -54,13 +54,13 @@ async def get_exchange_prices(symbol_list):
     # Get lists of currencies from gecko
     gecko_list = gecko_id_list()
 
-    input_list = []
+    median_prices = []
     print(symbol_list)
 
     # Iterate all smybols
     for symbol in symbol_list:
         print(f"Calculating for symbol {symbol}")
-        median_prices = []
+        all_price = []
         # Get price from all APIs and put them in a list(except ones without data)
         print("Fetching from Binance")
         binance = asyncio.create_task(binance_price(symbol))
